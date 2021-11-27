@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Detalles del inmueble</title>
+</head>
+<body>
+
+<!-- Main Container  -->
+<div layout:fragment="content" class="main-container container">
+    <ul class="breadcrumb">
+        <li><a th:href="@{/}"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Detalles del inmueble</a></li>
+    </ul>
+
+    <div class="row">
+
+
+        <div th:replace="/fragments/search"></div>
+
+
+        <!--Middle Part Start-->
+        <div id="content" class="col-md-9 col-sm-8">
+
+            <form th:action="@{/add-to-cart}" th:object="${product}" method="post">
+
+                <div th:if="${error}">
+                    <div class="alert alert-danger" th:text="${error}"></div>
+                </div>
+
+                <div th:if="${error == null}">
+
+                    <div class="product-view row">
+
+                        <div class="left-content-product">
+
+                            <div th:if="${param.addtocart}">
+                                <div class="alert alert-success">Dirijase a recervaciones para confirmar</div>
+                            </div>
+
+
+
+
+                            <div class="content-product-left class-honizol col-md-5 col-sm-12 col-xs-12">
+                                <div class="large-image  ">
+                                    <img itemprop="image" class="product-image-zoom" th:src="#{adminPath}+${product.getFullImage1Url()}" th:title="${product.name}" th:alt="${product.name}">
+                                </div>
+        <!--
+                               
+        -->
+
+                                <div id="thumb-slider" class="yt-content-slider full_slider owl-drag" data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="10"
+                                     data-items_column00="4" data-items_column0="4" data-items_column1="3" data-items_column2="4"  data-items_column3="1" data-items_column4="1"
+                                     data-arrows="yes" data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                                    <a data-index="0" class="img thumbnail " th:data-image="#{adminPath}+${product.getFullImage1Url()}" th:title="${product.name}">
+                                        <img th:src="#{adminPath}+${product.getFullImage1Url()}" th:title="${product.name}" th:alt="${product.name}">
+                                    </a>
+                                    <a data-index="1" class="img thumbnail " th:data-image="#{adminPath}+${product.getFullImage2Url()}" th:title="${product.name}">
+                                        <img th:src="#{adminPath}+${product.getFullImage2Url()}" th:title="${product.name}" th:alt="${product.name}">
+                                    </a>
+                                    <a data-index="2" class="img thumbnail " th:data-image="#{adminPath}+${product.getFullImage3Url()}" th:title="${product.name}">
+                                        <img th:src="#{adminPath}+${product.getFullImage3Url()}" th:title="${product.name}" th:alt="${product.name}">
+                                    </a>
+                                    <a data-index="3" class="img thumbnail " th:data-image="#{adminPath}+${product.getFullImage4Url()}" th:title="${product.name}">
+                                        <img th:src="#{adminPath}+${product.getFullImage4Url()}" th:title="${product.name}" th:alt="${product.name}">
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+                            <div class="content-product-right col-md-7 col-sm-12 col-xs-12">
+                                <div class="title-product">
+                                    <h1 th:text="${product.name}"></h1>
+                                </div>
+                                <div class="product-label form-group">
+                                    <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
+                                        <span class="price-new" itemprop="price" th:text="${product.ourPrice}"></span>
+                                        <span class="price-old" th:text="${product.salePrice}"></span>
+                                    </div>
+                                    <div class="stock"><span>Disponibilidad:</span> <span class="status-stock">Disponible</span></div>
+                                </div>
+
+                                <div class="product-box-desc">
+                                    <div class="inner-box-desc">
+                                        <div class="price-tax" th:if="${product.make}"><span th:text="'Make: '+${product.make.name}"></span></div>
+                                        <div class="price-tax" th:if="${product.model}"><span th:text="'Model: '+${product.model.name}"></span></div>
+                                        <div class="price-tax" th:if="${product.year}"><span th:text="'Year: '+${product.year}"></span></div>
+
+                                        <div class="price-tax"><span th:text="'Product Code: '+${product.code}"></span></div>
+                                        <div class="price-tax"><span th:text="'Stock Quantity: '+${product.stockQty}"></span></div>
+                                    </div>
+                                </div>
+
+
+                                <div id="product">
+                                    <h4>Available Options</h4>
+                                    <div class="form-group box-info-product">
+                                        <div class="option quantity">
+                                            <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
+                                                <label>tiempo(meses)</label>
+                                                <input class="form-control" type="text" name="quantity" value="1">
+                                                <input hidden="hidden" name="id" th:value="${product.id}" />
+                                                <span class="input-group-addon product_quantity_down">−</span>
+                                                <span class="input-group-addon product_quantity_up">+</span>
+                                            </div>
+                                        </div>
+                                        <div class="cart">
+                                        
+                                            <input type="submit" data-toggle="tooltip" title="" value="Reservar" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" data-original-title="Add to Cart">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- end box info product -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Product Tabs -->
+                    <div class="producttab ">
+                        <div class="tabsslider  vertical-tabs col-xs-12">
+                            <ul class="nav nav-tabs col-lg-2 col-sm-3">
+                                <li class="active"><a data-toggle="tab" href="#tab-1">Descripcion</a></li>
+                               
+                            </ul>
+                            <div class="tab-content col-lg-10 col-sm-9 col-xs-12">
+                                <div id="tab-1" class="tab-pane fade active in">
+                                    <p th:text="${product.description}">
+                                    </p>
+                                  
+
+
+                                </div>
+                                <div id="tab-2" class="tab-pane fade">
+                                    <p th:text="${product.description}">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+<!--Middle Part End-->
+
+<th:block layout:fragment="script">
+   <script type="text/javascript" th:src="@{/js/themejs/homepage.js}"></script>
+    <script type="text/javascript" th:src="@{/js/Util.js}"></script>
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            //display('grid');
+            $(".make").change(function() {
+                var url = /*[[@{/models}]]*/
+                getModels(url);
+            });
+        });
+    </script>
+</th:block>
+</body>
+</html>

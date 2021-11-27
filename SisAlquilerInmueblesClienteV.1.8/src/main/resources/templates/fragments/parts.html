@@ -1,0 +1,31 @@
+
+<div th:fragment="partsData(productList)" class="products-list row nopadding-xs so-filter-gird" th:object="${productList}">
+    <div th:if="${productList != null}">
+        <div data-th-each="productInfo : ${productList}" class="product-layout col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="product-item-container item--static">
+        <!-- REVISAR  IMAGENNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN -->
+            <div class="left-block">
+                <div class="product-image-container second_img">
+                    <a th:href="@{/part-details(id=${productInfo.id})}" target="_self" th:title="${productInfo.name}">
+                        <img th:src="#{adminPath}+${productInfo.getFullImage1Url()}" class="img-1 img-responsive" alt="image1">
+                        <img th:src="#{adminPath}+${productInfo.getFullImage2Url()}" class="img-2 img-responsive" alt="image2">
+                    </a>
+                </div>
+                
+            </div>
+            <div class="right-block">
+                
+                <h4><a th:href="@{/part-details(id=${productInfo.id})}" th:title="${productInfo.name}" target="_self" th:text="${productInfo.name}"></a></h4>
+                <div class="price">
+                    <span class="price" th:text="${productInfo.ourPrice}"></span>
+                </div>
+                <div class="description item-desc">
+                    <p th:text="${productInfo.description}"></p>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!--// End Changed listings-->

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Verificar</title>
+</head>
+<body>
+
+<!-- Main Container  -->
+<div  layout:fragment="content" class="main-container container">
+    <ul class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Verificar</a></li>
+    </ul>
+    <div class="row" th:if="${shoppingCart == null}">
+        <div class="col-sm-12">
+             <div class="alert alert-danger"> esta vacio</div>
+        </div>
+    </div>
+    <div class="row" th:if="${shoppingCart != null}">
+        <!--Middle Part Start-->
+        <form th:action="@{/checkout}" th:object="${shoppingCart}" enctype="multipart/form-data" method="post">
+
+            <input type="hidden" th:field="*{id}"/>
+
+            <input type="hidden" th:field="*{customer.id}"/>
+            <input type="hidden" th:field="*{customer.isDeleted}"/>
+            <input type="hidden" th:field="*{customer.password}"/>
+            <input type="hidden" th:field="*{customer.username}"/>
+
+            <div id="content" class="col-sm-12">
+                <div th:if="${param.success}">
+                    <div class="alert alert-info"> cambiado correctamente</div>
+                </div>
+
+                <div th:if="${param.cartEmpty}">
+                    <div class="alert alert-danger">vacio </div>
+                </div>
+
+
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+
+
+                <h2 class="title">verificar</h2>
+                <div class="so-onepagecheckout row">
+               
+
+                    <div class="col-right col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel panel-default no-padding">
+                                    <div class="col-sm-6 checkout-shipping-methods">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"></i>Contactenos </h4>
+                                        </div>
+                                        <div class="panel-body ">
+                                            <p>Seleccione modo de contacto</p>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" checked="checked" value="telefono + delivery" th:field="*{shippingMethod}">
+                                                    telefono + delivery
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" value="Personal" th:field="*{shippingMethod}">
+                                                     Personal
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6  checkout-payment-methods">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"></i> Metodo de pago</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <p>Metodo de Pago</p>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" checked="checked" value="Pago contra reembolso" th:field="*{paymentMethod}">
+                                                    Targeta de credito
+                                                </label>
+                                            </div>
+
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" value="Paypal" th:field="*{paymentMethod}"> Paypal 
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><i class="fa fa-shopping-cart"></i> Reservaciones  </h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <td class="text-center">Imagen</td>
+                                                    <td class="text-left">Inmueble</td>
+                                                    <td class="text-left">Meses</td>
+                                                    <td class="text-right">Precio  unidad</td>
+                                                    <td class="text-right">Total</td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr th:each="cartItem : ${shoppingCart.getCartItemList()}">
+                                                            <td class="text-center"><a th:href="@{/part-details(id=${cartItem.product.id})}"><img width="70px" th:src="#{adminPath}+${cartItem.product.getFullImage1Url()}" th:alt="${cartItem.product.name}" th:title="${cartItem.product.name}" class="img-thumbnail" /></a></td>
+                                                            <td class="text-left"><a th:href="@{/part-details(id=${cartItem.product.id})}" th:text="${cartItem.product.name}"></a><br /></td>
+                                                            <td class="text-center" th:text="${cartItem.quantity}"></td>
+                                                            <td class="text-right" th:text="${cartItem.ourPrice}"></td>
+                                                            <td class="text-right" th:text="${cartItem.totalPrice}"></td>
+                                                        </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <td class="text-right" colspan="4">
+                                                        <strong>Sub-Total:</strong>
+                                                    </td>
+                                                    <td class="text-right" th:text="${shoppingCart.subTotal}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-right"  colspan="4">
+                                                        <strong>Precio de reservacion por mes :</strong>
+                                                    </td>
+                                                    <td class="text-right" th:text="${shoppingCart.taxRate}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-right"  colspan="4">
+                                                        <strong>Precio de reservacion Total :</strong>
+                                                    </td>
+                                                    <td class="text-right" th:text="${shoppingCart.taxTotal}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-right"  colspan="4">
+                                                        <strong>Total Reservacion :</strong>
+                                                    </td>
+                                                    <td class="text-right" th:text="${shoppingCart.grandTotal}"></td>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"></i>Mensaje</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <textarea rows="4" class="form-control" th:text="${shoppingCart.description}"></textarea>
+                                        <br>
+                                        
+                                        <div class="buttons">
+                                            <div class="pull-right">
+                                                <a th:href="@{/view-cart}" class="btn btn-warning"> Modificar </a> |
+                                                <input type="submit" class="btn btn-primary" id="button-confirm" value="Confirm Reservacion">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--Middle Part End -->
+        </form>
+
+    </div>
+</div>
+<!-- //Main Container -->
+
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+    </script>
+</th:block>
+</body>
+</html>

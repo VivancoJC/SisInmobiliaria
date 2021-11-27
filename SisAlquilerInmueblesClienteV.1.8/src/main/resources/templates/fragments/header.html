@@ -1,0 +1,110 @@
+
+<!-- Header Container  -->
+<header id="header" class=" typeheader-4">
+
+    <!-- Header Top -->
+    <div class="header-top hidden-compact">
+        <div class="container">
+            <div class="row">
+                <div class="header-top-left col-lg-3 col-md-4 col-sm-5 hidden-xs">
+                    
+                </div>
+                <div class="header-top-right col-lg-9 col-md-8 col-sm-7 col-xs-12">
+
+                    <ul class="top-log list-inline">
+                        <li sec:authorize="isAuthenticated()"><i class="fa fa-lock"></i>Bienvenido <span sec:authentication="principal.username"></span> !</li>
+                        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
+                        <li sec:authorize="isAnonymous()"><i class="fa fa-lock"></i><a th:href="@{/login}">Acceso</a> / </li>
+                        <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                    <div class="logo">
+                        <a th:href="@{/}"><img th:src="@{/image/catalog/logo.png}" title="Your Store" alt="Your Store" /></a>
+                    </div>
+
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+    <div class="header-bottom hidden-compact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                    <div class="main-menu-w">
+                        <div class="responsive so-megamenu megamenu-style-dev">
+                            <nav class="navbar-default">
+                                <div class=" container-megamenu  horizontal open ">
+                                    <div class="navbar-header">
+                                        <button type="button" id="show-megamenu" data-toggle="collapse" class="navbar-toggle">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+
+                                    <div class="megamenu-wrapper">
+                                        <span id="remove-megamenu" class="fa fa-times"></span>
+                                        <div class="megamenu-pattern">
+                                            <div class="container-mega">
+                                                <ul class="megamenu" data-transition="slide" data-animationtime="250">
+                                                    <li th:class=" ${classActiveHome}">
+                                                        <p class="close-menu"></p>
+                                                        <a th:href="@{/}" class="clearfix">
+                                                            <strong><i class="fa fa-home"></i>Home</strong>
+                                                        </a>
+                                                    </li>
+                                                    <li th:class=" ${classActivePartSearch}">
+                                                        <p class="close-menu"></p>
+                                                        <a th:href="@{/part-search}" class="clearfix">
+                                                            <strong><i class="fa fa-search"></i>Busqueda de Inmuebles</strong>
+                                                        </a>
+                                                    </li>
+			
+
+
+                                                    <li th:class=" ${classActiveViewCart}">
+                                                        <p class="close-menu"></p>
+                                                        <a th:href="@{/view-cart}" class="clearfix">
+                                                            <strong><i class="fa fa-shopping-cart"></i>Reservaciones</strong>
+                                                        </a>
+                                                    </li>
+                                                    <li th:class=" ${classActiveCheckout}">
+                                                        <p class="close-menu"></p>
+                                                        <a th:href="@{/checkout}" class="clearfix">
+                                                            <strong><i class="fa fa-check-circle"></i>Verificar</strong>
+                                                        </a>
+                                                    </li>
+                                                    <li th:class=" ${classActiveMyAccount}">
+                                                        <p class="close-menu"></p>
+                                                        <a th:href="@{/my-account}" class="clearfix">
+                                                            <strong><i class="fa fa-dashboard"></i>Mi cuenta</strong>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</header>
+<!-- //Header Container  -->

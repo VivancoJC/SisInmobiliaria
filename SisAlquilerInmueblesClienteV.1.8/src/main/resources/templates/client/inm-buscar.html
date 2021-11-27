@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Búsqueda de inmuebles</title>
+</head>
+<body>
+<!-- Main Container  -->
+<div layout:fragment="content" class="main-container container">
+    <ul class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Búsqueda de inmuebles</a></li>
+    </ul>
+
+    <div class="row">
+
+        <div th:replace="/fragments/search"></div>
+
+
+        <!--Middle Part Start-->
+        <div id="content" class="col-md-9 col-sm-8">
+            <div class="products-category">
+                <h3 class="title-category ">Búsqueda de inmuebles</h3>
+                <div class="category-desc">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="banners">
+                                <div>
+                                    <a  href="#"><img th:src="@{/image/catalog/banners/id8-bn4.jpg}" alt="img part"><br></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Filters -->
+                <div class="product-filter product-filter-top filters-panel">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-3 col-xs-12 view-mode">
+
+                            <div class="list-view">
+                                <button class="btn btn-default grid active" data-view="grid" data-toggle="tooltip"  data-original-title="Grid"><i class="fa fa-th"></i></button>
+                                <button class="btn btn-default list" data-view="list" data-toggle="tooltip" data-original-title="List"><i class="fa fa-th-list"></i></button>
+                            </div>
+
+                        </div>
+                      
+                    </div>
+                </div>
+              
+
+                <div th:replace="/fragments/parts::partsData(productList=${productList})"></div>
+
+
+                <nav th:if="${productList.totalPages > 0}" aria-label="Page navigation example">
+                    <ul th:each="pageNumber : ${pageNumbers}" class="pagination">
+                        <li th:class="${pageNumber == currentPage} ? 'page-item active' : 'page-item '">
+                            <a th:href="@{/part-search(name=${param.name}, make=${param.make}, model=${param.model}, year=${param.year}, category=${param.category}, size=${productList.size}, page=${pageNumber})}"
+                               th:text="${pageNumber}" ></a>
+                        </li>
+                    </ul>
+                </nav>
+
+                
+                <div class="product-filter product-filter-bottom filters-panel">
+                    <div class="row">
+                        <div class="col-sm-6 text-left"></div>
+                        <div class="col-sm-6 text-right">Mostrando resultados</div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+        
+    </div>
+  
+</div>
+
+
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/js/Util.js}"></script>
+    <script th:inline="javascript">
+        $(document).ready(function() {
+
+            $(".make").change(function() {
+                var url = /*[[@{/models}]]*/
+                getModels(url);
+            });
+
+
+            <!--
+            // Check if Cookie exists
+            if($.cookie('display')){
+                view = $.cookie('display');
+            }else{
+                view = 'grid';
+            }
+            if(view) display(view);
+            //-->
+        });
+    </script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Registro</title>
+</head>
+<body>
+
+<!-- Main Container  -->
+<div layout:fragment="content" class="main-container container">
+    <ul class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Cuenta</a></li>
+        <li><a href="#">Registrarse</a></li>
+    </ul>
+
+    <div class="row">
+        <div id="content" class="col-sm-12">
+            <h2 class="title">Crear Cuenta</h2>
+            <p>o   <a th:href="@{/login}">Inicie sesion</a>.</p>
+
+            <div th:if="${param.error}">
+                <div class="alert alert-danger"> error al registrar</div>
+            </div>
+
+            <form th:action="@{/register}" th:object="${customerRegistrationDto}" enctype="multipart/form-data"  method="post" class="form-horizontal account-register clearfix">
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">registrado </div>
+                </div>
+
+                <div th:if="${param.email}">
+                    <div class="alert alert-danger">
+                         usuario / correo ya  existe
+                    </div>
+                </div>
+
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+
+
+                <fieldset id="account">
+                    <legend>Datos personales</legend>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="firstName">Nombres</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{firstName}" placeholder="First Name" id="firstName"  class="form-control">
+                            <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}" />
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="lastName">Apellidos</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{lastName}" placeholder="Last Name" id="lastName" class="form-control">
+                            <p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}" />
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="username">E-Mail</label>
+                        <div class="col-sm-10">
+                            <input type="email" th:field="*{username}" placeholder="E-Mail" id="username" class="form-control">
+                            <p th:if="${#fields.hasErrors('username')}" th:errorclass="error" th:errors="*{username}" />
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="phone">Telefono</label>
+                        <div class="col-sm-10">
+                            <input type="tel" placeholder="Telephone" th:field="*{phone}" id="phone" class="form-control">
+                            <p th:if="${#fields.hasErrors('phone')}" th:errorclass="error" th:errors="*{phone}" />
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset id="address">
+                    <legend>Tu Direccion /no validados </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="company">Empresa</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{company}" placeholder="Company" id="company" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="address1">Direccion 1</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{address1}" placeholder="Address 1" id="address1" class="form-control">
+                            <p th:if="${#fields.hasErrors('address1')}" th:errorclass="error" th:errors="*{address1}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="address2">Direccion 2</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{address2}" placeholder="Address 2" id="address2" class="form-control">
+                        </div>
+                    </div>
+                    
+                     <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="country">Ciudad</label>
+                        <div class="col-sm-10">
+                            <select name="country_id" id="country" th:field="*{country}" class="form-control">
+                                <option value=""> --- Selecc --- </option>
+                                <option th:each="country : ${countries}" th:value="${country.name}" th:utext="${country.code}+' - '+${country.name}"></option>
+                            </select>
+                            <p th:if="${#fields.hasErrors('country')}" th:errorclass="error" th:errors="*{country}" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="city">Distrito</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{city}" placeholder="Distrito" id="city" class="form-control">
+                            <p th:if="${#fields.hasErrors('city')}" th:errorclass="error" th:errors="*{city}" />
+                        </div>
+                    </div>
+                    
+                 
+                    
+                </fieldset>
+                <fieldset>
+                    <legend>Tus credenciales</legend>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="password">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" th:field="*{password}" minlength="5" required placeholder="Password" id="password" class="form-control">
+                            <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}" />
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="confirm">Confirmar Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" th:field="*{confirm}" minlength="5" required placeholder="Password Confirm" id="confirm" class="form-control">
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="bottom-form">
+                    <input type="submit" value="Register" class="btn btn-primary btn btn-default pull-right" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<!-- //Main Container -->
+
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+    </script>
+</th:block>
+</body>
+</html>

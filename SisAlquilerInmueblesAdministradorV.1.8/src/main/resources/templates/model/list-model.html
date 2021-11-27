@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <title>panel</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>
+        Lista de tipos de contrato
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">panel</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Lista de tipos de  contratos</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box-footer center">
+                        <a th:href="@{/model/add}">
+                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar
+                            </button>
+                        </a>
+                    </div>
+                    <div th:if="${param.success}">
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Guardado</h4>
+                            guardado
+                        </div>
+                    </div>
+                    <div th:if="${param.deleted}">
+                        <div class="alert alert-info alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-check"></i> Eliminado</h4>
+                            eliminado
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                   aria-describedby="example1_info">
+                                <thead class="thead">
+                                <tr>
+                                    <th>Id de contrato</th>
+                                    <th>Empres/persona</th>
+                                    <th>Nombre</th>
+                                    <th>Eliminar</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="model : ${listModel}">
+                                        <td th:text="${model.id}"></td>
+                                        <td th:text="${model.make.name}"></td>
+                                        <td th:text="${model.name}"></td>
+                                        <td th:text="${model.isDeleted}"></td>
+
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-xs purple editView" title="Edit" th:href="@{'/model/edit/' + ${model.id}}"><i class="fa fa-edit"></i> Editar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<th:block layout:fragment="script">
+    <script>
+      $(function () {
+        $('#example1').DataTable({
+          'paging'      : true,
+          'lengthChange': false,
+          'searching'   : true,
+          'ordering'    : true,
+          'info'        : true,
+          'autoWidth'   : false
+        })
+        jQuery('#example1_wrapper input').addClass("form-control input-sm"); // modify table search input
+      })
+    </script>
+</th:block>
+</body>
+</html>

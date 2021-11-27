@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Resercvaciones</title>
+</head>
+<body>
+
+<!-- Main Container  -->
+<div layout:fragment="content" class="main-container container">
+    <ul class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Ver posibes tratos</a></li>
+    </ul>
+
+    <div class="row">
+        <!--Middle Part Start-->
+        <div id="content" class="col-sm-12">
+
+            <div th:if="${param.updateCart}">
+                <div class="alert alert-info">Actualizado</div>
+            </div>
+            <div th:if="${param.removeCart}">
+                <div class="alert alert-danger">eliminado correctamente!</div>
+            </div>
+            <div th:if="${param.emptyCart}">
+                <div class="alert alert-danger">limpeado correctamente!</div>
+            </div>
+
+            <h2 class="title">Shopping Cart</h2>
+            <div class="table-responsive form-group">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <td class="text-center">Imagen</td>
+                        <td class="text-left">Nombre del inmueble</td>
+                        <td class="text-left">Codigo</td>
+                        <td class="text-left">tiempo a alquilar(meses)</td>
+                        <td class="text-right">Precio alquiler(1mes)</td>
+                        <td class="text-right">Total</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div th:if="${shoppingCart != null}">
+                        <tr th:each="cartItem : ${shoppingCart.getCartItemList()}">
+                            <td class="text-center"><a th:href="@{/part-details(id=${cartItem.product.id})}"><img width="70px" th:src="#{adminPath}+${cartItem.product.getFullImage1Url()}" th:alt="${cartItem.product.name}" th:title="${cartItem.product.name}" class="img-thumbnail" /></a></td>
+                            <td class="text-left"><a th:href="@{/part-details(id=${cartItem.product.id})}" th:text="${cartItem.product.name}"></a><br />
+                            </td>
+                            <form th:action="@{/update-cart}" method="post">
+                                <input type="hidden" name="id" th:value="${cartItem.product.id}" />
+                                <td class="text-left" th:text="${cartItem.product.code}"></td>
+                                <td class="text-left" width="200px"><div class="input-group btn-block quantity">
+                                    <input type="text" name="quantity" th:value="${cartItem.quantity}" size="1" class="form-control" />
+                                    <span class="input-group-btn">
+                                <button type="submit" data-toggle="tooltip" name="action" value="update" title="Actualizar" class="btn btn-primary"><i class="fa fa-clone"></i></button>
+                                </span></div></td>
+                            </form>
+                            <td class="text-right" th:text="${cartItem.ourPrice}"></td>
+                            <td class="text-right" th:text="${cartItem.totalPrice}"></td>
+                        </tr>
+                    </div>
+                    <div th:if="${shoppingCart == null}">
+                        <tr><td colspan="6" class="text-center">  </td></tr>
+                    </div>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-8">
+                    <table class="table table-bordered">
+                        <tbody th:if="${shoppingCart != null}">
+                        <tr>
+                            <td class="text-right">
+                                <strong>Sub-Total:</strong>
+                            </td>
+                            <td class="text-right" th:text="${shoppingCart.subTotal}"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <strong>Precio de reservacion por mes:</strong>
+                            </td>
+                            <td class="text-right" th:text="${shoppingCart.taxRate}"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <strong>Precio de reservacion Total:</strong>
+                            </td>
+                            <td class="text-right" th:text="${shoppingCart.taxTotal}"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-right">
+                                <strong>Total Reservacion:</strong>
+                            </td>
+                            <td class="text-right" th:text="${shoppingCart.grandTotal}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="buttons">
+                
+                <div class="pull-right"><a th:href="@{/empty-cart}" class="btn btn-warning">Eliminar     </a> | <a th:href="@{/checkout}" class="btn btn-primary">Verificar</a></div>
+            </div>
+        </div>
+        <!--Middle Part End -->
+
+    </div>
+</div>
+<!-- //Main Container -->
+
+
+<th:block layout:fragment="script">
+</th:block>
+</body>
+</html>

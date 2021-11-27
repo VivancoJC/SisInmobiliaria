@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+<!-- Main Container  -->
+<div layout:fragment="content" class="main-container container">
+    <ul class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Cuenta</a></li>
+        <li><a href="#">Iniciar Sesion</a></li>
+    </ul>
+
+    <div class="row">
+        <div id="content" class="col-sm-12">
+            <div class="page-login">
+
+                <div class="account-border">
+                    <div class="row">
+                    
+                    
+                    <!--  
+                        <div class="col-sm-6 new-customer">
+                            <div class="well">
+                                <h2><i class="fa fa-file-o" aria-hidden="true"></i> Nuevo Usuario</h2>
+                                <p>Al crear una cuenta, podrá comprar más rápido, estar actualizado sobre el estado de un pedido y realizar un seguimiento de los pedidos que haya realizado anteriormente.</p>
+                            </div>
+                            <div class="bottom-form">
+                                <a th:href="@{/register}" class="btn btn-default pull-right">Registrarse</a>
+                            </div>
+                        </div>
+                        -->
+                        
+                        
+                        <form th:action="@{/login}" th:object="${customerRegistrationDto}" method="post" enctype="multipart/form-data">
+                            <div class="col-sm-6 customer-login">
+                                <div class="well">
+                                    <div th:if="${param.error}">
+                                        <div class="alert alert-danger">Usuario o contraseña invalido.</div>
+                                    </div>
+
+                                    <h2><i class="fa text" aria-hidden="true"></i>   Inicie Sesion </h2>
+                                    <p><strong>   </strong></p>
+                                    <div class="form-group required">
+                                        <label class="control-label " for="username">E-mail</label>
+                                        <input type="email" th:field="*{username}" id="username" value="" class="form-control" />
+                                    </div>
+                                    <div class="form-group required">
+                                        <label class="control-label " for="password">Password</label>
+                                        <input type="password" th:field="*{password}" id="password" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                
+                                <div class="bottom-form">
+                                   
+                                     <!-- boton login -->
+                                    <input type="submit" value="Ingresar" class="btn btn-default pull-right" />
+                                    <!--fin login -->
+                                </div>
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //Main Container -->
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+    </script>
+</th:block>
+</body>
+</html>

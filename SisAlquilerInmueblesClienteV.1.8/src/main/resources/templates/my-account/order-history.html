@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Historial de pedidos</title>
+</head>
+<body>
+
+<!-- Main Container  -->
+<div layout:fragment="content"  class="main-container container">
+    <ul class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Historial de pedidos</a></li>
+    </ul>
+
+    <div class="row">
+        <!--Middle Part Start-->
+        <div id="content" class="col-sm-9">
+            <div th:if="${param.success}">
+                <div class="alert alert-info">Reservado con exito</div>
+            </div>
+
+            <h2 class="title">Historial de pedidos</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <td class="text-center"> ID </td>
+                        <td class="text-left">Metodo de pago</td>
+                        <td class="text-left">Contactenos </td>
+                        <td class="text-center">Estado</td>
+                        <td class="text-center">Fecha de Reservacion</td>
+                        <td class="text-right"> Total</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${orders}">
+                       
+                        <td class="text-left"><a th:href="@{/order-details(id=${order.id})}" th:text="'# '+${order.id}"></a></td>
+                        <td class="text-center" th:text="${order.paymentMethod}"></td>
+                        <td class="text-center" th:text="${order.shippingMethod}"></td>
+                        <td class="text-center" th:text="${order.orderStatus}"></td>
+                        <td class="text-center" th:text="${order.orderDate}"></td>
+                        <td class="text-right" th:text="${order.grandTotal}"></td>
+                        <td class="text-center">
+                        
+                            <a class="btn btn-info" title="" data-toggle="tooltip" th:href="@{/order-details(id=${order.id})}" data-original-title="View"><i class="fa fa-eye"></i></a>
+                          
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        
+
+        <div th:replace="/my-account/template/leftnav"></div>
+
+    </div>
+</div>
+<!-- //Main Container -->
+
+<th:block layout:fragment="script">
+</th:block>
+</body>
+</html>

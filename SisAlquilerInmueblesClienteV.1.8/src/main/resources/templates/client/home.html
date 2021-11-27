@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Home </title>
+</head>
+<body>
+    <!-- Main Container  -->
+    <div layout:fragment="content"  class="main-container">
+        <div id="content">
+            <div class="slider-container">
+                <div class="module sohomepage-slider ">
+                    <div class="yt-content-slider"  data-rtl="no" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column00="1" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                        <div class="yt-content-slide">
+                            <a href="#"><img th:src="@{/image/catalog/slideshow/home4/slider-1.jpg}" alt="slider1" class="img-responsive"></a>
+                        </div>
+                        <div class="yt-content-slide">
+                            <a href="#"><img th:src="@{/image/catalog/slideshow/home4/slider-2.jpg}" alt="slider2" class="img-responsive"></a>
+                        </div>
+                        <div class="yt-content-slide">
+                            <a href="#"><img th:src="@{/image/catalog/slideshow/home4/slider-3.jpg}" alt="slider3" class="img-responsive"></a>
+                        </div>
+                    </div>
+
+                    <div class="loadeding"></div>
+                </div>
+            </div>
+            <div class="content-main-w">
+                <div class="container">
+                    <div class="box-advanced-search">
+                        <form th:action="@{/part-search}" method="GET">
+                            <input type="hidden" name="name" value=""/>
+                            <input type="hidden" name="category" value=""/>
+
+                           
+                        </form>
+                    </div>
+                </div>
+
+              
+            </div>
+        </div>
+    </div>
+    <!-- //Main Container -->
+
+    <th:block layout:fragment="script">
+        <script type="text/javascript" th:src="@{/js/themejs/homepage.js}"></script>
+        <script type="text/javascript" th:src="@{/js/Util.js}"></script>
+        <script th:inline="javascript">
+            $(document).ready(function() {
+                display('grid');
+                $(".make").change(function() {
+                    var url = /*[[@{/models}]]*/
+                    getModels(url);
+                });
+            });
+        </script>
+    </th:block>
+</body>
+</html>
