@@ -55,12 +55,7 @@ public class CategoryController {
         return list_redirect+"?success";
     }
 
-    /*@GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable("id") int id, Model model) {
-        categoryService.delete(id);
-
-        return list_redirect+"?deleted";
-    }*/
+   
 
     @GetMapping("/list")
     public String listCategory(Model model) {

@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.proyecto.servidor.model.Empresa;
 import com.proyecto.servidor.model.Contrato;
-import com.proyecto.servidor.service.MakeService;
-import com.proyecto.servidor.service.ModelService;
+import com.proyecto.servidor.service.EmpresaService;
+import com.proyecto.servidor.service.ContratoService;
 
 @Controller
 @RequestMapping("/model")
 public class ModelController {
 
     @Autowired
-    private MakeService makeService;
+    private EmpresaService makeService;
 
     @Autowired
-    private ModelService modelService;
+    private ContratoService modelService;
 
 
     private String add_edit_template="/model/add-edit-model";
@@ -69,13 +69,7 @@ public class ModelController {
         return list_redirect+"?success";
     }
 
-    /*@GetMapping("/delete/{id}")
-    public String deleteModel(@PathVariable("id") int id, org.springframework.ui.Model model) {
-        modelService.delete(id);
-
-        return list_redirect+"?deleted";
-    }
-*/
+   
     @GetMapping("/list")
     public String listModel(org.springframework.ui.Model model) {
         List<Contrato> listModel = modelService.findAll();

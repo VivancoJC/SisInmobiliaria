@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proyecto.servidor.model.Contrato;
-import com.proyecto.servidor.repository.ModelRepository;
+import com.proyecto.servidor.repository.ContratoRepository;
 
 @Service
 @Transactional
-public class ModelService {
+public class ContratoService {
 
     @Autowired
-    private ModelRepository modelRepository;
+    private ContratoRepository modelRepository;
 
     public List<Contrato> findAll() {
         return (List<Contrato>) modelRepository.findAll();

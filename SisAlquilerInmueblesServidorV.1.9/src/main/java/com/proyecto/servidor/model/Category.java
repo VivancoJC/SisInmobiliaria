@@ -13,7 +13,6 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @Entity
 @Table(name="category")
-//@Table(name="categoria")
 public class Category {
     public Category(String name, String description){
         this.name =name;

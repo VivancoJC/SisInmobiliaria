@@ -40,8 +40,6 @@ public class LoginController {
 
         User userExists = userService.findByUsername(userRegistrationDto.getUsername());
 
-        //System.out.println("user-->"+userRegistrationDto.getUserName());
-        //System.out.println("userExists-->"+userExists);
 
         if (userExists != null) {
             return "redirect:/register?username";

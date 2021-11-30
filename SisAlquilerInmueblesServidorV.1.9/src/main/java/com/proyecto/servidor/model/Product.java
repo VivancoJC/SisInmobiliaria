@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Entity
 @Table(name="product")
-//@Table(name="inmueble")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

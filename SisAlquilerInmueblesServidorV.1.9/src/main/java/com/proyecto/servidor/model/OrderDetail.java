@@ -12,7 +12,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name="order_detail")
-//@Table(name="pedidodetalle")
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

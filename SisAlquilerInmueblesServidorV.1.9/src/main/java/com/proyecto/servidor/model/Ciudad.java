@@ -11,10 +11,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name="country")
 @Table(name="ciudad")
-public class Country {
-    public Country(String code, String name){
+public class Ciudad {
+    public Ciudad(String code, String name){
         this.code =code;
         this.name =name;
         this.isDeleted=false;

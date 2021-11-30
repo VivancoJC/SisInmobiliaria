@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(UserRegistrationDto registrationDto) {
 
-        //Creating admin role user
+        //Crear admin 
         User user = new User();
         user.setFirstName(registrationDto.getFirstName());
         user.setLastName(registrationDto.getLastName());

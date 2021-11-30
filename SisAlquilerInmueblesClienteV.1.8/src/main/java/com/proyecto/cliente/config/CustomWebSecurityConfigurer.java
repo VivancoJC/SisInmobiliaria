@@ -11,17 +11,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.proyecto.servidor.service.CartItemService;
+import com.proyecto.servidor.service.ReservaItemService;
 import com.proyecto.servidor.service.CategoryService;
-import com.proyecto.servidor.service.CountryService;
+import com.proyecto.servidor.service.CiudadService;
 import com.proyecto.servidor.service.CustomerService;
 import com.proyecto.servidor.service.EmailService;
-import com.proyecto.servidor.service.MakeService;
-import com.proyecto.servidor.service.ModelService;
+import com.proyecto.servidor.service.EmpresaService;
+import com.proyecto.servidor.service.ContratoService;
 import com.proyecto.servidor.service.OrderDetailService;
 import com.proyecto.servidor.service.OrderService;
 import com.proyecto.servidor.service.ProductService;
-import com.proyecto.servidor.service.ShoppingCartService;
+import com.proyecto.servidor.service.VerificarCartService;
 import com.proyecto.servidor.service.UserService;
 import com.proyecto.servidor.service.impl.CustomerServiceImpl;
 import com.proyecto.servidor.service.impl.UserServiceImpl;
@@ -52,8 +52,8 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public CountryService countryService(){
-        return new CountryService();
+    public CiudadService countryService(){
+        return new CiudadService();
     }
 
     @Bean
@@ -72,23 +72,23 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public ShoppingCartService shoppingCartService(){
-        return new ShoppingCartService();
+    public VerificarCartService shoppingCartService(){
+        return new VerificarCartService();
     }
 
     @Bean
-    public CartItemService cartItemService(){
-        return new CartItemService();
+    public ReservaItemService cartItemService(){
+        return new ReservaItemService();
     }
 
     @Bean
-    public MakeService makeService(){
-        return new MakeService();
+    public EmpresaService makeService(){
+        return new EmpresaService();
     }
 
     @Bean
-    public ModelService modelService(){
-        return new ModelService();
+    public ContratoService modelService(){
+        return new ContratoService();
     }
 
     @Bean

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.proyecto.servidor.model.Dropdown;
 import com.proyecto.servidor.model.Empresa;
 import com.proyecto.servidor.model.Product;
-import com.proyecto.servidor.service.MakeService;
-import com.proyecto.servidor.service.ModelService;
+import com.proyecto.servidor.service.EmpresaService;
+import com.proyecto.servidor.service.ContratoService;
 import com.proyecto.servidor.service.ProductService;
 import com.proyecto.servidor.util.Utility;
 
@@ -23,10 +23,10 @@ import com.proyecto.servidor.util.Utility;
 public class HomeController {
 
     @Autowired
-    private MakeService makeService;
+    private EmpresaService makeService;
 
     @Autowired
-    private ModelService modelService;
+    private ContratoService modelService;
 
     @Autowired
     private Utility utility;

@@ -17,7 +17,6 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
-//@Table(name = "usuario", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

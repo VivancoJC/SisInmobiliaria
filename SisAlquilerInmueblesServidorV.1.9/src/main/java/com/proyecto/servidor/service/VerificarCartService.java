@@ -11,18 +11,18 @@ import com.proyecto.servidor.model.ReservaItem;
 import com.proyecto.servidor.model.Customer;
 import com.proyecto.servidor.model.Product;
 import com.proyecto.servidor.model.VerificarCart;
-import com.proyecto.servidor.repository.CartItemRepository;
-import com.proyecto.servidor.repository.ShoppingCartRepository;
+import com.proyecto.servidor.repository.ReservaItemRepository;
+import com.proyecto.servidor.repository.VerificarCartRepository;
 
 @Service
 @Transactional
-public class ShoppingCartService {
+public class VerificarCartService {
 
     @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
+    private VerificarCartRepository shoppingCartRepository;
 
     @Autowired
-    private CartItemRepository cartItemRepository;
+    private ReservaItemRepository cartItemRepository;
 
     private Float TAX_RATE =5.0F; //5% Percent
 

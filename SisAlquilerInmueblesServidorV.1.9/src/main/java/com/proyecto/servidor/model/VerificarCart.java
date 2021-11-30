@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name="shopping_cart")
 @Table(name="verificar_cart")
 public class VerificarCart {
     @Id

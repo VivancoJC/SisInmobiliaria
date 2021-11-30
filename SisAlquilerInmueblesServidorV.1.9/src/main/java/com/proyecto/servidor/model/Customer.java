@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "customer", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
-//@Table(name = "cliente", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,7 +77,7 @@ public class Customer {
     @NotNull(message = "Select Country!")
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", referencedColumnName = "country_id")
-    private Country country;
+    private Ciudad country;
     //---------------- end address -------------//
 
 

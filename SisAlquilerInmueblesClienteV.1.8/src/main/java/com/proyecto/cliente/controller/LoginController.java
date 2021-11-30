@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.proyecto.servidor.model.Country;
+import com.proyecto.servidor.model.Ciudad;
 import com.proyecto.servidor.model.Customer;
-import com.proyecto.servidor.service.CountryService;
+import com.proyecto.servidor.service.CiudadService;
 import com.proyecto.servidor.service.CustomerService;
 import com.proyecto.servidor.service.EmailService;
 import com.proyecto.servidor.web.dto.CustomerRegistrationDto;
@@ -27,7 +27,7 @@ public class LoginController {
     private CustomerService customerService;
 
     @Autowired
-    private CountryService countryService;
+    private CiudadService countryService;
 
     @Autowired
     private EmailService emailService;
@@ -85,7 +85,7 @@ public class LoginController {
         model.addAttribute("customerRegistrationDto", customerRegistrationDto);
 
         //Get countries list
-        List<Country> countryList = countryService.findAll();
+        List<Ciudad> countryList = countryService.findAll();
         model.addAttribute("countries", countryList);
 
         return "auth/register";
@@ -97,7 +97,7 @@ public class LoginController {
         model.addAttribute("customerRegistrationDto", customerRegistrationDto);
 
         //Get countries list
-        List<Country> countryList = countryService.findAll();
+        List<Ciudad> countryList = countryService.findAll();
         model.addAttribute("countries", countryList);
 
         Customer customerExists = customerService.findByUsername(customerRegistrationDto.getUsername());

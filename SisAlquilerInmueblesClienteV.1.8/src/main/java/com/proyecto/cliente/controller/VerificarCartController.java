@@ -17,20 +17,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.proyecto.servidor.model.Country;
+import com.proyecto.servidor.model.Ciudad;
 import com.proyecto.servidor.model.Customer;
 import com.proyecto.servidor.model.Order;
 import com.proyecto.servidor.model.Product;
 import com.proyecto.servidor.model.VerificarCart;
-import com.proyecto.servidor.service.CountryService;
+import com.proyecto.servidor.service.CiudadService;
 import com.proyecto.servidor.service.CustomerService;
 import com.proyecto.servidor.service.EmailService;
 import com.proyecto.servidor.service.OrderService;
 import com.proyecto.servidor.service.ProductService;
-import com.proyecto.servidor.service.ShoppingCartService;
+import com.proyecto.servidor.service.VerificarCartService;
 
 @Controller
-public class ShoppingCartController {
+public class VerificarCartController {
 
     @Autowired
     private ProductService productService;
@@ -39,10 +39,10 @@ public class ShoppingCartController {
     private CustomerService customerService;
 
     @Autowired
-    private CountryService countryService;
+    private CiudadService countryService;
 
     @Autowired
-    private ShoppingCartService shoppingCartService;
+    private VerificarCartService shoppingCartService;
 
     @Autowired
     private OrderService orderService;
@@ -161,7 +161,7 @@ public class ShoppingCartController {
         model.addAttribute("shoppingCart", customer.getShoppingCart());
 
         //Get countries list
-        List<Country> countryList = countryService.findAll();
+        List<Ciudad> countryList = countryService.findAll();
         model.addAttribute("countries", countryList);
 
         return "/client/verificar";
@@ -176,7 +176,7 @@ public class ShoppingCartController {
         model.addAttribute("classActiveCheckout", "home active");
 
         //Get countries list
-        List<Country> countryList = countryService.findAll();
+        List<Ciudad> countryList = countryService.findAll();
 
         //set countries
         model.addAttribute("countries", countryList);

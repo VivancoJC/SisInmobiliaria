@@ -24,17 +24,13 @@
                                 <option th:each="makeInfo : ${listMake}" th:selected="(${makeInfo.id} == ${make})" th:value="${makeInfo.id}" th:utext="${makeInfo.name}"/>
                             </select>
 
+<!-- 
                             <legend>tipo de contrato</legend>
                             <select class="form-control model" name="model" id="model">
                                 <option th:each="modelInfo : ${listModel}" th:selected="(${modelInfo.id} == ${model})" th:value="${modelInfo.id}" th:utext="${modelInfo.name}"/>
                             </select>
-<!-- 
-                            <legend>Tiempo de Contratoaa</legend>
-                            <select class="form-control" name="year" id="year">
-                                <option value="">/tiempo de alquiler minimo</option>
-                                <option th:each="yearInfo : ${listYear}" th:selected="(${yearInfo} == ${year})" th:value="${yearInfo}" th:utext="${yearInfo}"/>
-                            </select>
--->             </div>
+                            -->
+             </div>
                           
                      
 

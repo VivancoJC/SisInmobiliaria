@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proyecto.servidor.model.ReservaItem;
-import com.proyecto.servidor.repository.CartItemRepository;
+import com.proyecto.servidor.repository.ReservaItemRepository;
 
 @Service
 @Transactional
-public class CartItemService {
+public class ReservaItemService {
 
     @Autowired
-    private CartItemRepository cartItemRepository;
+    private ReservaItemRepository cartItemRepository;
 
     public List<ReservaItem> findAll() {
         return (List<ReservaItem>) cartItemRepository.findAll();

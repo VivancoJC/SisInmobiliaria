@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.proyecto.servidor.model.Empresa;
-import com.proyecto.servidor.service.MakeService;
+import com.proyecto.servidor.service.EmpresaService;
 
 @Controller
 @RequestMapping("/make")
 public class MakeController {
 
     @Autowired
-    private MakeService makeService;
+    private EmpresaService makeService;
 
     private String add_edit_template="/make/add-edit-make";
     private String list_template="/make/list-make";

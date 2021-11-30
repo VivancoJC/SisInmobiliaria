@@ -12,10 +12,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.proyecto.servidor.model.Country;
+import com.proyecto.servidor.model.Ciudad;
 import com.proyecto.servidor.model.Customer;
 import com.proyecto.servidor.model.Role;
-import com.proyecto.servidor.repository.CountryRepository;
+import com.proyecto.servidor.repository.CiudadRepository;
 import com.proyecto.servidor.repository.CustomerRepository;
 import com.proyecto.servidor.repository.RoleRepository;
 import com.proyecto.servidor.service.CustomerService;
@@ -25,11 +25,10 @@ import com.proyecto.servidor.web.dto.CustomerRegistrationDto;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    //  private CustomerRepository customerDAO;--cambiar  repository x  dao, esto apunta arepositori/dao
     private CustomerRepository customerRepository;
 
     @Autowired
-    private CountryRepository countryRepository;
+    private CiudadRepository countryRepository;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -46,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer save(CustomerRegistrationDto registrationDto) {
 
-        //Creating admin role user
+        //Crear admin rol 
         Customer customer = new Customer();
         customer.setFirstName(registrationDto.getFirstName());
         customer.setLastName(registrationDto.getLastName());
@@ -56,10 +55,10 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setRoles(Arrays.asList(roleRepository.findByName("CUSTOMER")));
         customer.setIsDeleted(false);
 
-        //Get country
-        Country country = countryRepository.findByName(registrationDto.getCountry());
+        //Get ciudad
+        Ciudad country = countryRepository.findByName(registrationDto.getCountry());
 
-        //Address
+        //direccion
         customer.setCompany(registrationDto.getCompany());
         customer.setAddress1(registrationDto.getAddress1());
         customer.setAddress2(registrationDto.getAddress2());

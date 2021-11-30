@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proyecto.servidor.model.Empresa;
-import com.proyecto.servidor.repository.MakeRepository;
+import com.proyecto.servidor.repository.EmpresaRepository;
 
 @Service
 @Transactional
-public class MakeService {
+public class EmpresaService {
 
     @Autowired
-    private MakeRepository makeRepository;
+    private EmpresaRepository makeRepository;
 
     public List<Empresa> findAll() {
         return (List<Empresa>) makeRepository.findAll();

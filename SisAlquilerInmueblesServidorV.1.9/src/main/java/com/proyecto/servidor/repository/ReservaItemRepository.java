@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.proyecto.servidor.model.ReservaItem;
 
-public interface CartItemRepository extends JpaRepository<ReservaItem, Long> {
+public interface ReservaItemRepository extends JpaRepository<ReservaItem, Long> {
 }

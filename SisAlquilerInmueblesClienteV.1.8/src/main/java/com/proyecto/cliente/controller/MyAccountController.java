@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.proyecto.servidor.model.Country;
+import com.proyecto.servidor.model.Ciudad;
 import com.proyecto.servidor.model.Customer;
 import com.proyecto.servidor.model.Order;
-import com.proyecto.servidor.service.CountryService;
+import com.proyecto.servidor.service.CiudadService;
 import com.proyecto.servidor.service.CustomerService;
 import com.proyecto.servidor.service.OrderService;
 
@@ -30,7 +30,7 @@ public class MyAccountController {
     CustomerService customerService;
 
     @Autowired
-    CountryService countryService;
+    CiudadService countryService;
 
     @Autowired
     OrderService orderService;
@@ -52,7 +52,7 @@ public class MyAccountController {
         model.addAttribute("customer", customer);
 
         //Get countries list
-        List<Country> countryList = countryService.findAll();
+        List<Ciudad> countryList = countryService.findAll();
         model.addAttribute("countries", countryList);
 
         return "/my-account/my-account";
@@ -63,7 +63,7 @@ public class MyAccountController {
         model.addAttribute("classActiveMyAccount", "home active");
 
         //Get countries list
-        List<Country> countryList = countryService.findAll();
+        List<Ciudad> countryList = countryService.findAll();
         model.addAttribute("countries", countryList);
 
         //Get logged in customer

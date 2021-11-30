@@ -22,8 +22,8 @@ import com.proyecto.servidor.model.Empresa;
 import com.proyecto.servidor.model.Contrato;
 import com.proyecto.servidor.model.Product;
 import com.proyecto.servidor.service.CategoryService;
-import com.proyecto.servidor.service.MakeService;
-import com.proyecto.servidor.service.ModelService;
+import com.proyecto.servidor.service.EmpresaService;
+import com.proyecto.servidor.service.ContratoService;
 import com.proyecto.servidor.service.ProductService;
 import com.proyecto.servidor.util.Utility;
 
@@ -38,10 +38,10 @@ public class ProductController {
     private CategoryService categoryService;
 
     @Autowired
-    private MakeService makeService;
+    private EmpresaService makeService;
 
     @Autowired
-    private ModelService modelService;
+    private ContratoService modelService;
 
     @Autowired
     private Utility utility;
@@ -82,7 +82,7 @@ public class ProductController {
         List<Empresa> listMake = makeService.findAll();
         model.addAttribute("listMake", listMake);
 
-        //get models if make is not empty
+   
         List<Contrato> listModel = modelService.getModels(listMake.get(0).getId());
         if(product.getMake() !=null) {
             listModel = modelService.getModels(product.getMake().getId());
@@ -111,7 +111,7 @@ public class ProductController {
         if(result.hasErrors()){
             return add_edit_template;
         }
-        //if(product.)
+       
 
         productService.save(product);
         return list_redirect+"?success";
@@ -119,12 +119,6 @@ public class ProductController {
 
 
 
-    /*@GetMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable("id") long id, org.springframework.ui.Model model) {
-        productService.delete(id);
-
-        return list_redirect+"?deleted";
-    }*/
 
     @GetMapping("/list")
     public String listProduct(org.springframework.ui.Model model) {

@@ -15,7 +15,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "role")
-//@Table(name = "rol")
 public class Role {
     public Role(String name) {
         super();

@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name="make")
 @Table(name="empresa")
 public class Empresa {
     public Empresa(String name){
@@ -43,7 +42,6 @@ public class Empresa {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", isDeleted=" + isDeleted +
-                //", modelList=" + modelList +
                 '}';
     }
 

@@ -44,13 +44,13 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public MakeService makeService(){
-        return new MakeService();
+    public EmpresaService makeService(){
+        return new EmpresaService();
     }
 
     @Bean
-    public ModelService modelService(){
-        return new ModelService();
+    public ContratoService modelService(){
+        return new ContratoService();
     }
 
     @Bean

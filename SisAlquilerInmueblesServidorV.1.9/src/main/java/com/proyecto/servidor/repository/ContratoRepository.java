@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.proyecto.servidor.model.Contrato;
 
-public interface ModelRepository extends JpaRepository<Contrato, Long> {
+public interface ContratoRepository extends JpaRepository<Contrato, Long> {
     Contrato findByName(String name);
 
 

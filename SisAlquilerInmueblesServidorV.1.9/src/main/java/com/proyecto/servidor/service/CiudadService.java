@@ -6,29 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.proyecto.servidor.model.Country;
-import com.proyecto.servidor.repository.CountryRepository;
+import com.proyecto.servidor.model.Ciudad;
+import com.proyecto.servidor.repository.CiudadRepository;
 
 @Service
 @Transactional
-public class CountryService {
+public class CiudadService {
 
     @Autowired
-    private CountryRepository countryRepository;
+    private CiudadRepository countryRepository;
 
-    public List<Country> findAll() {
-        return (List<Country>) countryRepository.findAll();
+    public List<Ciudad> findAll() {
+        return (List<Ciudad>) countryRepository.findAll();
     }
 
-    public Country findByName(String name) {
+    public Ciudad findByName(String name) {
         return countryRepository.findByName(name);
     }
 
-    public void save(Country product) {
+    public void save(Ciudad product) {
         countryRepository.save(product);
     }
 
-    public Country get(long  id) {
+    public Ciudad get(long  id) {
         return countryRepository.findById(id).get();
     }
 

@@ -14,7 +14,6 @@ import javax.validation.constraints.Null;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name="model")
 @Table(name="contrato")
 public class Contrato {
     public Contrato(String name, Empresa make){
