@@ -20,7 +20,7 @@ import com.proyecto.servidor.service.ContratoService;
 
 @Controller
 @RequestMapping("/model")
-public class ModelController {
+public class ContratoController {
 
     @Autowired
     private EmpresaService makeService;

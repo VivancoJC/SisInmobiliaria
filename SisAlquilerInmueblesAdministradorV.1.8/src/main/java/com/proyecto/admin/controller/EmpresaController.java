@@ -19,7 +19,7 @@ import com.proyecto.servidor.service.EmpresaService;
 
 @Controller
 @RequestMapping("/make")
-public class MakeController {
+public class EmpresaController {
 
     @Autowired
     private EmpresaService makeService;
